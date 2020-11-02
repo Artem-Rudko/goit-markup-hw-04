@@ -6,6 +6,7 @@
     --accent-color: #2196F3;
     --bgc-main: #ffffff;
     --bgc-secondary: #2F303A;
+    --bgc-transparent: rgba(47, 48, 58, 0.4);
     --footer-text-clr: rgba(255, 255, 255, 0.6);
     --button-bgc-color: #F5F4FA;
 }
@@ -186,9 +187,18 @@ address .footer.address {
 /* Стили для index.html */
 
 .hero {
-    background-color: var(--bgc-secondary);
+    height: 600px;
+    max-width: 1600px;
+    padding-top: 200px;
     padding-bottom: 200px;
+    margin-right: auto;
+    margin-left: auto;
     text-align: center;
+    background-color: var(--bgc-secondary);
+    background-image: linear-gradient(to right, var(--bgc-transparent), var(--bgc-transparent)), url("../images/hero.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .hero-title {
