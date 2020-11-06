@@ -147,6 +147,39 @@ header .list {
     margin-left: auto;
 }
 
+.contacts>.item {
+    display: inline-flex;
+    align-items: center;
+}
+
+.icon-envelope {
+    display: inline-flex;
+    align-items: center;
+}
+
+.icon-envelope::before {
+    content: '';
+    width: 16px;
+    height: 12px;
+    background-image: url(../icons/envelope.svg);
+    margin-right: 10px;
+}
+
+.icon-smartphone {
+    display: inline-flex;
+    align-items: center;
+}
+
+.icon-smartphone::before {
+    content: '';
+    width: 10px;
+    height: 16px;
+    background-image: url(../icons/smartphone.svg);
+    margin-right: 10px;
+}
+
+
+
 header {
     border-bottom: 1px solid #ECECEC;
 }
@@ -182,14 +215,71 @@ address .footer.address {
     color: rgba(255, 255, 255, 0.6);
 }
 
+.join-us {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.14;
+    margin-top: 12px;
+    text-transform: uppercase;
+    color: var(--bgc-main);
+}
+
+/* footer .container {
+    display: inline-block;
+} */
+
+/* .social-links {
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+} */
+
+/* .contacts-social {
+    display: flex;
+    content: '';
+    height: 44px;
+    width: 44px;
+    border-radius: 50%;
+    margin-bottom: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--accent-color);
+} */
+
+.container-flex {
+    display: flex;
+    flex-direction: row;
+}
+.contacts-footer {
+    margin-right: 70px;
+}
+.contacts-social {
+    text-align: bottom;
+}
+
+.contacts-social::after {
+    display: inline-block;
+    content: '';
+    height: 44px;
+    width: 44px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-image: url(../icons/instagram.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
+    background-color: var(--accent-color);
+}
 
 
 
 /* Стили для index.html */
 
 .hero {
-    height: 600px;
     max-width: 1600px;
+    height: 600px;
     padding-top: 200px;
     padding-bottom: 200px;
     margin-right: auto;
@@ -375,13 +465,6 @@ address .footer.address {
 .partners-list-item:not(:last-child) {
     margin-right: 30px;
 }
-
-/* .partners-list-item::before {
-    content: '';
-    height: 100%;
-    border-radius: 4px;
-}  */
-
 
 /* Стили для portfolio.html */
 
