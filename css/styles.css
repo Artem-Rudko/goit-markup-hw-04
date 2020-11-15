@@ -112,6 +112,24 @@ img {
     color: var(--accent-color);
 }
 
+.site-nav>.item {
+    position: relative;
+}
+
+.link.current::after {
+    position: absolute;
+    display: inline-block;
+    content: '';
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    /* top: 45.5px; */
+    bottom: -33.5px;
+    left: 0;
+    background-color: var(--accent-color);
+}
+
+
 .contacts .link {
     font-weight: 500;
     line-height: 1.71;
@@ -167,40 +185,6 @@ header .list {
 .phone-set:focus {
     color: var(--accent-color);
 }
-
-
-/* .contacts>.item {
-    display: inline-flex;
-    align-items: center;
-} */
-
-/* .icon-envelope {
-    display: inline-flex;
-    align-items: center;
-}
-
-.icon-envelope::before {
-    content: '';
-    width: 16px;
-    height: 12px;
-    background-image: url(../icons/envelope.svg);
-    margin-right: 10px;
-}
-
-.icon-smartphone {
-    display: inline-flex;
-    align-items: center;
-}
-
-.icon-smartphone::before {
-    content: '';
-    width: 10px;
-    height: 16px;
-    background-image: url(../icons/smartphone.svg);
-    margin-right: 10px;
-} */
-
-
 
 header {
     border-bottom: 1px solid #ECECEC;
@@ -558,7 +542,6 @@ footer .social-icons-link:focus {
 
 .projects img {
     width: 100%;
-    margin-bottom: 20px;
 }
 
 .link .projects-title {
@@ -566,9 +549,10 @@ footer .social-icons-link:focus {
     font-size: 18px;
     line-height: 2.0;
     letter-spacing: 0.06em;
-    margin-left: 24px;
+    margin-top: 20px;
     margin-right: 24px;
     margin-bottom: 4px;
+    margin-left: 24px;
 }
 
 .projects-type {
@@ -586,69 +570,132 @@ footer .social-icons-link:focus {
     flex-wrap: wrap;
 }
 
-.projects>.item {
+.project-item {
     /* width: calc(100% - 60px)/3); */
     width: 370px;
     background-color: var(--bgc-main);
     border: 1px solid #EEEEEE;
 }
 
-.projects>.item:hover,
-.projects>.item:focus {
+.project-item:hover,
+.project-item:focus {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
 }
+
+
 
 /* костыль для удаления аутлайна в карточках при фокусе*/
 .project-card:focus {
     outline: 2px solid var(--accent-color);
 }
 
-.projects .item:not(:nth-child(3n)) {
+.project-item:not(:nth-child(3n)) {
     margin-right: 30px;
 }
 
-.projects .item:not(:nth-last-child(-n+3)) {
+.project-item:not(:nth-last-child(-n+3)) {
     margin-bottom: 30px;
 }
 
 .project-card-thumb {
     position: relative;
+    overflow: hidden;
 }
 
 .project-description-overlay {
     position: absolute;
-    top: 50%;
+    top: 0;
     left: 0;
-    transform: translate(0, -50%);
     padding: 24px;
+    width: 100%;
+    height: 100%;
+
+    display: inline-flex;
+    align-items: center;
 
     font-size: 18px;
     line-height: 1.56;
 
+    transform: translateY(100%);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
     color: var(--bgc-main);
-    opacity: 0;
-}
-
-.project-card-thumb::before {
-    position: absolute;
-    display: inline-block;
-    content: '';
-    width: 100%;
-    height: 100%;
-   
     background-color: rgba(33, 150, 243, 0.9);
-    opacity: 0;
 }
 
-.project-card:hover .project-card-thumb::before,
-.project-card:focus .project-card-thumb::before,
 .project-card:hover .project-description-overlay,
 .project-card:focus .project-description-overlay { 
-opacity: 1;
+    transform: translateY(0);
+}
+
+.project-item:hover .project-description-overlay,
+.project-item:focus .project-description-overlay { 
+    transform: translateY(0);
 }
 
 
 
+/* Модальное окно 1 */
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+    width: 100%;
+    height: 100%;
+
+    opacity: 1;
+
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.backdrop.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.backdrop.is-hidden .modal {
+    transform: translate(-50%, -50%) scale(0.8);
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+
+    width: 528px;
+    height: 581px;
+
+    padding: 8px;
+    
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    
+    background-color: var(--bgc-main);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+
+}
+
+.modal-close-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    
+    background: var(--bgc-main);
+}
 
 /* DELETE after finish */
 
